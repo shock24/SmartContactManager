@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+<body>
+	<section>
+		
+		<div class="card ml-3 mr-3" th:if="${contact}">
+			<div class="card-body text-center">
+				<img src="" style="width: 200px; height: 200px;" class="my_profile_picture" th:src="@{'/img/'+${contact.image}}" alt="profile image" />
+				<h3 class="mt-3"><span th:text="${contact.name}"></span> ( <span th:text="${contact.secondName}"></span> ) </h3>
+				<div class="table-responsive">
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#ID</th>
+				      <th scope="col">SCMUSER<span th:text="${contact.cid}"></span></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Email</th>
+				      <td><span th:text="${contact.email}"></span></td>
+				    </tr>
+				    </tr>
+				    
+				    <tr>
+				      <th scope="row">Phone</th>
+				      <td><span th:text="${contact.phone}"></span></td>
+				    </tr>
+				    </tr>
+				    
+				    <tr>
+				      <th scope="row">Work</th>
+				      <td><span th:text="${contact.work}"></span></td>
+				    </tr>
+				    </tr>
+				  </tbody>
+				</table>
+				</div>
+				
+				<div class="description">
+					<th:block th:utext="${contact.description}"></th:block>
+				</div>
+				
+				
+				<div class="container mt-3">
+					<a href="#" th:onclick="|deleteContact(${contact.cid})|" class="btn btn-danger btn-block">Delete</a>
+					 <form th:action="@{'/user/update-contact/'+${contact.cid}}" method="post" class="mt-2">
+				      	<button type="submit" class="btn btn-success btn-block">Update</button>
+				      </form>
+				</div>
+			
+			</div>
+		
+		
+		</div>
+		
+		<h1 class="text-center" th:unless="${contact}">You don't have permission to view this contact.</h1>
+		
+		<script>
+			$(document).ready(()=>{
+				$('.item').removeClass('active');
+				$('#contacts-link').addClass('active');
+			});
+		
+		</script>
+	</section>
+</body>
+</html>
