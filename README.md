@@ -10,5 +10,5 @@ Important features in the project:-
   
 Technologies used:-
   HTML, CSS, Javascript,
-  Spring Boot,
+  Java, Spring Boot
   MySQL
